@@ -103,14 +103,14 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: <domainName>
+  - host: a.altopathi.xyz
     http:
       paths:
       - pathType: Prefix
         path: "/<Path>"
         backend:
           service:
-            name: <serviceName>
+            name: javawebappsvc
             port:
               number: <servicePort>
 ``` 
@@ -120,31 +120,27 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: <name>
-  namespace: <namespace>
+  name: ingress-resource-1
+  namespace: nginx-ingress
 spec:
   ingressClassName: nginx
   rules:
-  - host: <domainName>
+  - host: a.altopathi.xyz
     http:
       paths:
-      - pathType: Prefix
-        path: "/<Path>"
-        backend:
+      - backend:
           service:
-            name: <serviceName>
+            name: javawebappsvc
             port:
-              number: <servicePort>
-  - host: <domainName>
+              number: 80
+  - host: b.altopathi.xyz
     http:
       paths:
-      - pathType: Prefix
-        path: "/<Path>"
-        backend:
+      - backend:
           service:
-            name: <serviceName>
+            name: mavenwebappsvc
             port:
-              number: <servicePort>	
+              number: 80	
 ``` 		  
 
 ### Path Based Routing Example
